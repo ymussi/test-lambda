@@ -1,0 +1,17 @@
+service: aws
+variablesResolutionMode: 20210326
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  region: us-east-2
+  lambdaHashingVersion: 20201221
+
+functions:
+  kong-update-cognito:
+    handler: app.handler
+    name: kong-update-cognito
+    runtime: nodejs14.x
+    memorySize: 128
+    timeout: 3

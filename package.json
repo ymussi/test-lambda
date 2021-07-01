@@ -1,0 +1,37 @@
+{
+  "name": "kong-update-cognito",
+  "version": "1.0.0",
+  "description": "Lambda to update 'peferred_username' (cpf) field on Cognito.",
+  "main": "app.js",
+  "repository": "https://github.com/madeiramadeira/kong-update-cognito",
+  "author": "MadeiraMadeira",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "start:build": "yarn run build && cd dist && serverless invoke local -f kong-update-cognito -p ../events/event.json",
+    "build": "tsc",
+    "postbuild": "cp package.json dist/package.json && cp serverless-local.yml dist/serverless.yml && cd dist && yarn install --production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.51",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "aws-sdk": "^2.936.0",
+    "jest": "^27.0.3",
+    "ts-jest": "^27.0.2",
+    "tsc": "^2.0.3",
+    "typescript": "^4.3.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ]
+  }
+}

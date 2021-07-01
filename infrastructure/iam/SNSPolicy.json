@@ -1,0 +1,12 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sns:*",
+      "Resource": [
+        "arn:aws:sns:${aws_region}:${account_id}:${app_name}*"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}

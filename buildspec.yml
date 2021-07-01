@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  pre_build:
+    run-as: root
+    commands:
+      # Install Serverless Framework CLI and plugins
+      - curl -L -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.7.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+      - npm install -g serverless $(yq eval '.plugins | join(" ")' serverless.yml)
+  build:
+    commands:
+      - serverless deploy --verbose --stage $ENVIRONMENT_NAME

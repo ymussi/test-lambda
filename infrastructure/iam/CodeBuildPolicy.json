@@ -1,0 +1,225 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachRolePolicy",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:DeleteRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:GetPolicy",
+        "iam:GetRole",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListPolicies",
+        "iam:ListRolePolicies",
+        "iam:ListRoles",
+        "iam:PassRole",
+        "iam:PutRolePolicy",
+        "iam:UpdateRole"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:DeleteLogGroup",
+        "logs:DeleteLogStream",
+        "logs:DeleteRetentionPolicy",
+        "logs:DeleteSubscriptionFilter",
+        "logs:DescribeLogGroups",
+        "logs:PutLogEvents",
+        "logs:PutMetricFilter",
+        "logs:PutSubscriptionFilter"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases"
+      ],
+      "Resource": [
+        "arn:aws:codebuild:${aws_region}:${account_id}:report-group/${app_name}*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CancelUpdateStack",
+        "cloudformation:ContinueUpdateRollback",
+        "cloudformation:CreateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:DeleteStackSet",
+        "cloudformation:DescribeChangeSet",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:DescribeStackResource*",
+        "cloudformation:DescribeStacks",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:GetStackPolicy",
+        "cloudformation:GetTemplate",
+        "cloudformation:ListChangeSets",
+        "cloudformation:ListStackResources",
+        "cloudformation:UpdateStack",
+        "cloudformation:ValidateTemplate"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:CreateApplication",
+        "codedeploy:CreateDeployment",
+        "codedeploy:CreateDeploymentConfig",
+        "codedeploy:CreateDeploymentGroup",
+        "codedeploy:DeleteApplication",
+        "codedeploy:DeleteDeploymentConfig",
+        "codedeploy:DeleteDeploymentGroup",
+        "codedeploy:GetApplication",
+        "codedeploy:GetApplicationRevision",
+        "codedeploy:GetDeployment",
+        "codedeploy:GetDeploymentConfig",
+        "codedeploy:GetDeploymentGroup",
+        "codedeploy:GetDeploymentTarget",
+        "codedeploy:ListApplicationRevisions",
+        "codedeploy:ListApplications",
+        "codedeploy:ListDeploymentConfigs",
+        "codedeploy:ListDeploymentGroups",
+        "codedeploy:ListDeployments",
+        "codedeploy:ListDeploymentTargets",
+        "codedeploy:PutLifecycleEventHookExecutionStatus",
+        "codedeploy:RegisterApplicationRevision",
+        "codedeploy:StopDeployment",
+        "codedeploy:UpdateApplication",
+        "codedeploy:UpdateDeploymentGroup"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:AddPermission",
+        "lambda:CreateAlias",
+        "lambda:CreateEventSourceMapping",
+        "lambda:CreateFunction",
+        "lambda:DeleteAlias",
+        "lambda:DeleteEventSourceMapping",
+        "lambda:DeleteFunction",
+        "lambda:DeleteFunctionConcurrency",
+        "lambda:Get*",
+        "lambda:List*",
+        "lambda:PublishVersion",
+        "lambda:PutFunctionConcurrency",
+        "lambda:PutProvisionedConcurrencyConfig",
+        "lambda:RemovePermission",
+        "lambda:TagResource",
+        "lambda:UntagResource",
+        "lambda:Update*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect":"Allow",
+      "Action": [
+        "s3:GetBucketVersioning",
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:List*",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "${codepipeline_bucket_arn}",
+        "${codepipeline_bucket_arn}/*"
+      ]
+    },
+    {
+      "Effect":"Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:DeleteObject",
+        "s3:DeleteObjectVersion",
+        "s3:GetBucketLocation",
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:ListBucket",
+        "s3:ListBucketVersions",
+        "s3:ListObjects*",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${lambda_bucket}*",
+        "arn:aws:s3:::${lambda_bucket}*/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue",
+        "ssm:GetParameter",
+        "ssm:PutParameter"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:${aws_region}:${account_id}:secret:devops*",
+        "arn:aws:secretsmanager:${aws_region}:${account_id}:secret:${secrets_name}*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:DescribeParameters"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameter"
+      ],
+      "Resource": "arn:aws:ssm:${aws_region}:${account_id}:parameter/aws/reference/secretsmanager/${app_name}*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNetworkInterfacePermission"
+      ],
+      "Resource": "arn:aws:ec2:${aws_region}:${account_id}:network-interface/*",
+      "Condition": {
+        "StringEquals": {
+          "ec2:Subnet": [
+            %{ for subnet in subnet_ids ~}
+            "arn:aws:ec2:${aws_region}:${account_id}:subnet/${subnet}"%{ if index(subnet_ids, subnet) != length(subnet_ids) - 1 ~},%{ endif ~}
+            %{ endfor ~}
+          ],
+          "ec2:AuthorizedService": "codebuild.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
